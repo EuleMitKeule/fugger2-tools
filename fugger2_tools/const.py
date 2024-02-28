@@ -1,0 +1,1 @@
+EXTENSION_DAT = "DAT"
