@@ -173,7 +173,7 @@ class Converter:
             row_pixels: list[int] = []
             count: int = 0
             for x in range(image.width):
-                r, g, b = image.getpixel((x, y))
+                r, g, b, a = image.getpixel((x, y))
                 # Convert 888 RGB to 555 RGB
                 r_555 = (r * 31 // 255) & 0x1F
                 g_555 = (g * 31 // 255) & 0x1F
@@ -199,6 +199,11 @@ class Converter:
             row_data.count = count
             row_data.count_transparent = 0
             row_data.const_fe = 0xFE
+            row_data.next_value = 0xFE
             icon3.rows.append(row)
+
+        row_data.const_fe = None
+        row_data.const_ff = 0xFF
+        row_data.next_value = 0xFF
 
         return icon3
